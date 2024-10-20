@@ -3,3 +3,4 @@ Bot/users.db
 Database/users_data.db
 test.py
 .idea
+__pycache__
