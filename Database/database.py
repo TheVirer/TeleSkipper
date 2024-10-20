@@ -16,7 +16,7 @@ class User(Base):
     id = Column(Integer, Sequence('user_id_seq'), primary_key=True)
     user_id = Column(Integer,default="None")
     first_name = Column(String, default="None")
-    softs = Column(JSON, default="None")
+    softs = Column(JSON, default={})
 
 class HWIDEntry(Base):
     __tablename__ = "hwid_entries"
@@ -25,6 +25,23 @@ class HWIDEntry(Base):
     hwid = Column(String, default="None")
     soft = Column(String, default="None")
     user_id = Column(Integer, default="None")
+
+async def add_soft_to_user(user_id,soft_name,soft_data):
+    async with new_session() as session:
+        query = select(User).where(User.user_id == user_id)
+
+        result = await session.execute(query)
+        user = result.scalar_one_or_none()
+        print(user.softs)
+
+        user.softs[soft_name] = soft_data
+        print(user.softs)
+
+        await session.commit()
+    async with new_session() as session:
+        result = await session.execute(select(User).where(User.user_id == user_id))
+        updated_user = result.scalar_one_or_none()
+        print(updated_user.softs)
 
 async def add_user_to_main_database(user_id,first_name):
     async with new_session() as session:

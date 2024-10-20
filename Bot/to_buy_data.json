@@ -1,1 +1,36 @@
-{"combine": {"periods": {"month": 25, "3months": 49, "forever": 75}}}
+{
+  "combine": {
+    "periods": {
+      "month": {
+        "price": 25,
+        "license_exp": {
+          "hours": 0,
+          "days": 0,
+          "months": 1,
+          "years": 0
+        }
+      },
+      "3months": {
+        "price": 49,
+        "license_exp": {
+          "hours": 0,
+          "days": 0,
+          "months": 3,
+          "years": 0
+        }
+      },
+      "forever": {
+        "price": 75,
+        "license_exp": {
+          "hours": 0,
+          "days": 0,
+          "months": 0,
+          "years": 50
+        }
+    }},
+    "guide": "https://telegra.ph/Gajd-po-zapusku-10-20",
+    "soft_data": {
+      "config": {}
+    }
+  }
+}

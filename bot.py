@@ -9,4 +9,3 @@ from Bot.Handlers import *
 
 def on_startup():
     print("Бот запущен")
-    print("1234")
