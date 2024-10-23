@@ -26,22 +26,19 @@ class HWIDEntry(Base):
     soft = Column(String, default="None")
     user_id = Column(Integer, default="None")
 
-async def add_soft_to_user(user_id,soft_name,soft_data):
+async def add_soft_to_user(user_id, soft_name, soft_data):
     async with new_session() as session:
         query = select(User).where(User.user_id == user_id)
 
         result = await session.execute(query)
         user = result.scalar_one_or_none()
-        print(user.softs)
 
-        user.softs[soft_name] = soft_data
-        print(user.softs)
+        new_softs = dict(user.softs)
+        new_softs[soft_name] = soft_data
+        user.softs = new_softs
 
+        session.add(user)
         await session.commit()
-    async with new_session() as session:
-        result = await session.execute(select(User).where(User.user_id == user_id))
-        updated_user = result.scalar_one_or_none()
-        print(updated_user.softs)
 
 async def add_user_to_main_database(user_id,first_name):
     async with new_session() as session:

@@ -1,4 +1,6 @@
 aiogram~=2.23.1
-aiofiles~=24.1.0
-aiocryptopay~=0.4.6
-SQLAlchemy~=2.0.35
+aiofiles
+aiocryptopay
+SQLAlchemy
+fastapi
+uvicorn
