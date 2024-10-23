@@ -4,3 +4,4 @@ Database/users_data.db
 test.py
 .idea
 __pycache__
+.gitignore
