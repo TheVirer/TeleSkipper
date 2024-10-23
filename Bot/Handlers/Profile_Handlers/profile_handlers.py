@@ -1,4 +1,4 @@
-from bot import dp,bot
+from Bot.bot import dp,bot
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 from config import PROFILE_PIC

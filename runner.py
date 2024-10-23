@@ -1,9 +1,8 @@
-from aiogram import executor
-from bot import dp, on_startup
+from Bot.bot import dp, on_startup
 import asyncio
-from Bot.users_database import create_db as create_bot_db
+from Bot.BotDatabase.users_database import create_db as create_bot_db
 from Database.database import create_db as create_main_db
-from api import run_api
+from API.api import run_api
 from concurrent.futures import ThreadPoolExecutor
 
 async def start_dp(dp, on_startup):

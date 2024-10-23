@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Sequence, Float, 
 from sqlalchemy import select
 
 engine = create_async_engine(
-    "sqlite+aiosqlite:///Bot/users.db"
+    "sqlite+aiosqlite:///Bot/BotDatabase/users.db"
 )
 new_session = async_sessionmaker(engine, expire_on_commit=False)
 

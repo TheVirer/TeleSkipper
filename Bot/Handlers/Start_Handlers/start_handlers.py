@@ -1,7 +1,7 @@
-from bot import bot,dp
+from Bot.bot import bot,dp
 from aiogram import types
 from aiogram.dispatcher import FSMContext
-from Bot.users_database import get_user_from_bot_db,add_user_to_bot_database
+from Bot.BotDatabase.users_database import get_user_from_bot_db,add_user_to_bot_database
 from Bot.Keyboards.main_keyboards import main_markup
 from Database.database import add_user_to_main_database, get_user_from_main_db
 

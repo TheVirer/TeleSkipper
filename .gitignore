@@ -1,5 +1,5 @@
 .venv
-Bot/users.db
+Bot/BotDatabase/users.db
 Database/users_data.db
 test.py
 .idea

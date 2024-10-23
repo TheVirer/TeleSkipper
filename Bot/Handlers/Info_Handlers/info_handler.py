@@ -1,4 +1,4 @@
-from bot import dp,bot
+from Bot.bot import dp
 from aiogram import types
 from aiogram.dispatcher import FSMContext
 

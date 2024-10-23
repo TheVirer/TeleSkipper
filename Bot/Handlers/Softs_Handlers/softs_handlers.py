@@ -1,5 +1,5 @@
 import json
-from bot import dp,bot
+from Bot.bot import dp,bot
 from aiogram import types
 from Bot.Keyboards.softs_keyboards import softs_markup
 from aiogram.types import InlineKeyboardMarkup,InlineKeyboardButton
