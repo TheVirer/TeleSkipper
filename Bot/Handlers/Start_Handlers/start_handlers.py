@@ -5,10 +5,12 @@ from Bot.BotDatabase.users_database import get_user_from_bot_db,add_user_to_bot_
 from Bot.Keyboards.main_keyboards import main_markup
 from Database.database import add_user_to_main_database, get_user_from_main_db
 
+from datetime import datetime
+
 @dp.message_handler(commands="start", state="*")
 async def start_command(message: types.Message, state: FSMContext):
     if not await get_user_from_bot_db(user_id=message.from_user.id):
-        await add_user_to_bot_database(user_id=message.from_user.id,first_name=message.from_user.first_name,username=message.from_user.username)
+        await add_user_to_bot_database(user_id=message.from_user.id,first_name=message.from_user.first_name,username=message.from_user.username,reg_data=datetime.now().strftime("%d-%m-%Y"))
     if not await get_user_from_main_db(user_id=message.from_user.id):
         await add_user_to_main_database(user_id=message.from_user.id,first_name=message.from_user.first_name)
 

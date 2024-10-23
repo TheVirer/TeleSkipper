@@ -17,11 +17,12 @@ class User(Base):
     user_id = Column(Integer,default="None")
     username = Column(String,default="None")
     first_name = Column(String, default="None")
+    reg_data = Column(String)
 
-async def add_user_to_bot_database(user_id,first_name,username):
+async def add_user_to_bot_database(user_id,first_name,username,reg_data):
     async with new_session() as session:
 
-        new_user = User(user_id=user_id, username=username, first_name=first_name)
+        new_user = User(user_id=user_id, username=username, first_name=first_name, reg_data=reg_data)
         session.add(new_user)
 
         await session.commit()
