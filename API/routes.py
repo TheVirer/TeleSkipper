@@ -4,7 +4,7 @@ from API.models import CheckHWIDModel, GetUserModel
 router = APIRouter(prefix="",tags=["Чек лицензии"])
 
 @router.post("/check_hwid")
-async def check_hwid(hwid: str) -> CheckHWIDModel:
+async def check_hwid(hwid: str, soft: str) -> CheckHWIDModel:
     return {"ok": True, "user_id": 12124124}
 
 @router.get("/get_user")

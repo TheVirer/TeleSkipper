@@ -55,6 +55,7 @@ async def check_cryptobot_payment(callback: types.CallbackQuery):
 
         license_exp = to_buy_data[soft_name]['periods'][buy_period]['license_exp']
         to_buy_data[soft_name]['soft_data']['exp_date'] = (datetime.now() + relativedelta(hours=license_exp['hours'],days=license_exp['days'],months=license_exp['months'],years=license_exp['years'])).strftime("%d.%m.%Y %H:%M")
+        to_buy_data[soft_name]['soft_data']['name'] = to_buy_data[soft_name]['name']
 
         await add_soft_to_user(user_id=callback.from_user.id, soft_name=soft_name, soft_data=to_buy_data[soft_name]['soft_data'])
         await callback.answer()
