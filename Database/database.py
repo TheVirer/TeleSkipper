@@ -59,6 +59,54 @@ async def get_user_from_main_db(user_id):
 
         return user
 
+async def add_hwid_entry(user_id, soft: str, hwid: str):
+    async with new_session() as session:
+
+        new_hwid_entry = HWIDEntry(user_id=user_id, soft=soft, hwid=hwid)
+        session.add(new_hwid_entry)
+
+        await session.commit()
+
+async def change_hwid_by_id(user_id, soft: str, hwid: str):
+    async with new_session() as session:
+        query = select(HWIDEntry).where(
+            HWIDEntry.user_id == user_id,
+            HWIDEntry.soft == soft
+        )
+
+        result = await session.execute(query)
+        hwid_entry = result.scalar_one_or_none()
+
+        if hwid_entry is not None:
+            hwid_entry.hwid = hwid
+            await session.commit()
+        else:
+            await add_hwid_entry(user_id=user_id, soft=soft, hwid=hwid)
+
+async def check_hwid_for_availability(hwid: str, soft: str):
+    async with new_session() as session:
+        query = select(HWIDEntry).where(
+            HWIDEntry.hwid == hwid,
+            HWIDEntry.soft == soft
+        )
+
+        result = await session.execute(query)
+        hwid_entry = result.scalar_one_or_none()
+
+        return hwid_entry
+
+async def get_hwid_by_id_for_soft(user_id, soft: str):
+    async with new_session() as session:
+        query = select(HWIDEntry).where(
+            HWIDEntry.user_id == user_id,
+            HWIDEntry.soft == soft
+        )
+
+        result = await session.execute(query)
+        hwid_entry = result.scalar_one_or_none()
+
+        return hwid_entry
+
 async def create_db():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
